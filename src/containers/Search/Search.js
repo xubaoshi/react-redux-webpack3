@@ -22,8 +22,6 @@ import './styles/search.less'
 export default class Search extends React.Component {
     constructor(props) {
         super(props)
-        this.hotClick = this.hotClick.bind(this)
-        this.upDateValue = this.upDateValue.bind(this)
         this.state = {
             currentHot: ''
         }
@@ -32,10 +30,10 @@ export default class Search extends React.Component {
         console.log('进入搜索页面')
         this.props.receiveHotSearch()
     }
-    upDateValue(value) {
+    upDateValue = (value) => {
         this.setState({currentHot: value})
     }
-    hotClick(text) {
+    hotClick = (text) => {
         this.setState(() => { return {currentHot: text} })
     }
     render() {
@@ -43,23 +41,24 @@ export default class Search extends React.Component {
         const { currentHot } = this.state
         return (
             <div style={{height: '100vh'}}>
-                <Header handleClick={this.props.currentAnimate}
-                        currentHot={currentHot}
-                        upDateValue={this.upDateValue}
+                <Header
+                    currentHot={currentHot}
+                    handleClick={this.props.currentAnimate}
+                    upDateValue={this.upDateValue}
                 />
                 <div>
                     <p className="search-hot-title">
-                        <i className="fa fa-fire"></i>
+                        <i className="fa fa-fire" />
                         <span>热门搜索</span>
                     </p>
                     <p className="style_div_p">
                         {
                             hotData.map((elem, index) =>
                                 <HotSearch
-                                    key={index}
-                                    hotText={elem.text}
-                                    hotClick={() => this.hotClick(elem.text)}
                                     currentHot={currentHot}
+                                    hotClick={() => this.hotClick(elem.text)}
+                                    hotText={elem.text}
+                                    key={index}
                                 />
                             )
                         }

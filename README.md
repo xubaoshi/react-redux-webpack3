@@ -1,28 +1,41 @@
+<p align="center"><img width="100" src="https://segmentfault.com/img/bVZwRf?w=516&h=457"<p align="center"><img width="100" src="https://sfault-image.b0.upaiyun.com/326/633/3266334656-5a20ec7869df2_articlex"></p>
 
-# 热更新、ES6/7、LESS、Router4、redux、webpack3、async／await、前端node服务器，按需加载...
+# React技术栈长期开源项目
 
 [![Build Status](https://travis-ci.org/hyy1115/react-redux-webpack2.svg?branch=master)](https://travis-ci.org/hyy1115/react-redux-webpack2)  [![codebeat badge](https://codebeat.co/badges/8be7b4c1-85f3-4da9-ab23-d470624b40ad)](https://codebeat.co/projects/github-com-hyy1115-react-redux-webpack2-master)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)  
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-**重磅消息：React16已经发布，本项目升级到react最新版，测试一切正常，快来体验吧！**
+**适用人群：该框架集成了react开发常用技术栈，适用于想要学习单向数据流框架搭建的新手、以及想要一个比较干净、简洁的框架从事前端项目的开发者。（doc文件夹附有教程文档）**
 
-适用人群：该框架集成了react开发常用技术栈，适用于想要学习单向数据流框架搭建的新手、以及想要一个比较干净、简洁的框架从事实践项目的开发者。（doc文件夹附有教程文档）
+#### 客户端渲染
 
-1、React和React-Dom打包压缩后的总体积由147KB => 116KB
+本项目是客户端渲染版本
 
-2、React16更新变化请看官方文档：https://facebook.github.io/react/blog/2017/09/26/react-v16.0.html
+满足下面2个条件，你的首屏加载js可以压缩到极致：
 
+1、切换到preact版本（遗憾的是可能会丢失某些东西）
+
+2、服务端部署开启gzip
+
+极致压缩的效果，首屏只需要app.js和vendor.js，共36.89kb（比起服务端渲染，或许你会更喜欢客户端渲染）：
 ```text
-官方推荐：
+//首屏
+app.js (28.54 KB)
+vendor.js (8.35 KB)
 
-对于 HTTP/1.1 客户端，由 webpack 打包你的应用程序会尤其强大，因为在浏览器发起一个新请求时，
-它能够减少应用程序必须等待的时间。对于 HTTP/2，你还可以使用代码拆分(Code Splitting)以及通过 
-webpack 打包来实现最佳优化。
+//搜索页
+search.js (2.31 KB)
+
+//书籍列表页
+bookList.js (717 B)
 ```
-我自己也是基于这套框架做开发，所以我会长期维护该项目，跟随相关插件的升级而升级优化。
 
-==========================
+#### 服务端渲染
 
+虽然客户端渲染可以实现首屏请求最少的js资源，但是服务端渲染也是有他的优势所在，
+
+关注SEO的开发者推荐使用基于本框架的服务端渲染版本：https://github.com/hyy1115/react-next
+#
 #### Installation 教程
 
 fork到你的账号，简单省事，或者 download 项目到本地
@@ -53,7 +66,7 @@ windows
 npm run build-win
 ```
 
-===========================================
+#
 
 #### 关于DOC文档教程的解释
 

@@ -35,31 +35,19 @@ import './styles/home.less'
     dispatch => bindActionCreators({...home, ...global}, dispatch)
 )
 export default class Home extends React.Component {
-
-    constructor(props) {
-        super(props);
-        //构造函数用法
-        //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
-        //例子：this.myfunction = this.myfunction.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-    }
-
     componentWillMount() {
         const { navMain, bookDetails } = this.props
         if (navMain.length === 0) {
             this.props.getNav();
         }
-
         if (bookDetails.length === 0) {
             this.props.getBook()
         }
     }
-
-    handleClick() {
+    handleClick = () => {
         //该函数用来执行组件内部的事件，比如在这里就是nav组件菜单的导航点击事件
         // this.props.history.push('/')
     }
-
     render() {
         const { navMain, bookDetails } = this.props
         //还可以通过自定义样式传递给组件
@@ -67,11 +55,11 @@ export default class Home extends React.Component {
         return(
             <div>
                 <Header
-                    title="react-redux架构"
-                    imgUrl={search}
-                    linkTo="search"
                     bgColor={bgClass}
                     handleClick={this.props.currentAnimate}
+                    imgUrl={search}
+                    linkTo="search"
+                    title="react-redux架构"
                 />
                 <div className="style_div">
                     <ul className="style_ul">
@@ -79,10 +67,10 @@ export default class Home extends React.Component {
                             navMain.map((elem, index) => {
                                 return (
                                     <Nav
+                                        handleClick={() => this.handleClick()}
+                                        index={index}
                                         key={index}
                                         title={elem.text}
-                                        index={index}
-                                        handleClick={() => this.handleClick()}
                                     />
                                 )
                             })
@@ -99,15 +87,15 @@ export default class Home extends React.Component {
                         bookDetails.map((ele, index) => {
                             return (
                                 <BookList
-                                    key={index}
                                     _id={ele._id}
-                                    title={ele.title}
                                     author={ele.author}
+                                    currentPrice={ele.currentPrice}
+                                    index={index + 1}
+                                    key={index}
+                                    originalPrice={ele.originalPrice}
                                     press={ele.press}
                                     publishedDate={ele.publishedDate}
-                                    currentPrice={ele.currentPrice}
-                                    originalPrice={ele.originalPrice}
-                                    index={index + 1}
+                                    title={ele.title}
                                 />
                             )
                         })
